@@ -22,7 +22,7 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     public void initStart() {
-        figure = fm.figures(Figures.Z);
+        figure = fm.figures(Figures.T);
         timer = new Timer(250,this);
 
         x = figure[0][0];
@@ -31,16 +31,23 @@ public class GameField extends JPanel implements ActionListener {
         timer.start();
     }
 
+    public void checkCollision(){
+        if(y == 255){
+            timer.stop();
+            System.out.println("y = " + y);
+        }
+    }
+
     public void paint(Graphics g) {
         super.paint(g);
 
         //draw figure
-        g.setColor(Color.cyan);
+        g.setColor(Color.cyan); // 285
         g.fillRect(x +(figure[0][0] - x),y +(y - figure[0][1]),figure[0][2],figure[0][3]);
         g.fillRect(x +(figure[1][0] - x),y +(y - figure[1][1]),figure[1][2],figure[1][3]);
         g.fillRect(x +(figure[2][0] - x),y +(y - figure[2][1]),figure[2][2],figure[2][3]);
         g.fillRect(x +(figure[3][0] - x),y +(y - figure[3][1]),figure[3][2],figure[3][3]);
-
+        System.out.println(y);
         //draw field
         for (int i = 0; i < SIZE; i += DOT_SIZE) {
             g.setColor(Color.GRAY);
@@ -55,6 +62,7 @@ public class GameField extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        checkCollision();
         repaint();
         y += DOT_SIZE/2;
     }
