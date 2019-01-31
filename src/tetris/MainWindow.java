@@ -11,7 +11,7 @@ public class MainWindow {
     }
 
     public void create(){
-        window.setTitle("ProbeGravityFigure");
+        window.setTitle("TETRIS");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setSize(330,600);
         window.setResizable(false);
