@@ -38,10 +38,10 @@ public class GameField extends JPanel implements ActionListener {
 
     public void checkCollision() {
         if (y == 255) {
-            //timer.stop();
+            timer.stop();
 
-            int i;
-            i = new Random().nextInt(8);
+            int i = 10;
+            //i = new Random().nextInt(8);
 
             switch (i) {
                 case 0:
@@ -67,8 +67,8 @@ public class GameField extends JPanel implements ActionListener {
                     break;
             }
 
-            x = figure[0][0];
-            y = figure[0][1];
+            //x = figure[0][0];
+            //y = figure[0][1];
         }
 
         if (x > 210) {
@@ -84,7 +84,7 @@ public class GameField extends JPanel implements ActionListener {
         super.paint(g);
 
         //draw figure
-        g.setColor(Color.cyan);
+        g.setColor(new Color(figure[4][0],figure[4][1],figure[4][2]));
         g.fillRect(x + (x - figure[0][0]), y + (y - figure[0][1]), figure[0][2], figure[0][3]);
         g.fillRect(x + (x - figure[1][0]), y + (y - figure[1][1]), figure[1][2], figure[1][3]);
         g.fillRect(x + (x - figure[2][0]), y + (y - figure[2][1]), figure[2][2], figure[2][3]);
@@ -123,6 +123,7 @@ public class GameField extends JPanel implements ActionListener {
             if (key == KeyEvent.VK_RIGHT) {
                 x += 30;
             }
+
 
         }
     }
