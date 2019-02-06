@@ -31,7 +31,7 @@ public class GameField extends JPanel implements ActionListener {
     public void initStart() {
         figures = Figures.Z;
         figure = fm.figures(figures);
-        timer = new Timer(250, this);
+        timer = new Timer(500, this);
 
         x = figure[0][0];
         y = figure[0][1];

@@ -24,7 +24,7 @@ public class FigureManager {
                 figure[0][0] = 120; figure[0][1] = 30; figure[0][2] = 30; figure[0][3] = 30;
                 figure[1][0] = 150; figure[1][1] = 30; figure[1][2] = 30; figure[1][3] = 30;
                 figure[2][0] = 180; figure[2][1] = 30; figure[2][2] = 30; figure[2][3] = 30;
-                figure[3][0] = 120; figure[3][1] = 0; figure[3][2] = 30; figure[3][3] = 30;
+                figure[3][0] = 120; figure[3][1] = 60; figure[3][2] = 30; figure[3][3] = 30;
                 figure[4][0] = 255; figure[4][1] = 165; figure[4][2] = 0;
                 break;
             case O:
@@ -66,7 +66,7 @@ public class FigureManager {
                 figure[0][0] = 180; figure[0][1] = 30; figure[0][2] = 30; figure[0][3] = 30;
                 figure[1][0] = 180; figure[1][1] = 60; figure[1][2] = 30; figure[1][3] = 30;
                 figure[2][0] = 180; figure[2][1] = 90; figure[2][2] = 30; figure[2][3] = 30;
-                figure[3][0] = 150; figure[3][1] = 90; figure[3][2] = 30; figure[3][3] = 30;
+                figure[3][0] = 210; figure[3][1] = 90; figure[3][2] = 30; figure[3][3] = 30;
                 figure[4][0] = 0; figure[4][1] = 0; figure[4][2] = 255;
                 break;
             case L2:
@@ -92,7 +92,7 @@ public class FigureManager {
                 break;
             case T2:
                 figure[0][0] = 150; figure[0][1] = 60; figure[0][2] = 30; figure[0][3] = 30;
-                figure[1][0] = 120; figure[1][1] = 60; figure[1][2] = 30; figure[1][3] = 30;
+                figure[1][0] = 180; figure[1][1] = 60; figure[1][2] = 30; figure[1][3] = 30;
                 figure[2][0] = 150; figure[2][1] = 30; figure[2][2] = 30; figure[2][3] = 30;
                 figure[3][0] = 150; figure[3][1] = 90; figure[3][2] = 30; figure[3][3] = 30;
                 figure[4][0] = 128; figure[4][1] = 0; figure[4][2] = 128;
@@ -114,7 +114,7 @@ public class FigureManager {
             case J3:
                 figure[0][0] = 120; figure[0][1] = 60; figure[0][2] = 30; figure[0][3] = 30;
                 figure[1][0] = 150; figure[1][1] = 60; figure[1][2] = 30; figure[1][3] = 30;
-                figure[2][0] = 120; figure[2][1] = 30; figure[2][2] = 30; figure[2][3] = 30;
+                figure[2][0] = 120; figure[2][1] = 90; figure[2][2] = 30; figure[2][3] = 30;
                 figure[3][0] = 180; figure[3][1] = 60; figure[3][2] = 30; figure[3][3] = 30;
                 figure[4][0] = 0; figure[4][1] = 0; figure[4][2] = 255;
                 break;
@@ -143,7 +143,7 @@ public class FigureManager {
                 figure[0][0] = 150; figure[0][1] = 60; figure[0][2] = 30; figure[0][3] = 30;
                 figure[1][0] = 180; figure[1][1] = 60; figure[1][2] = 30; figure[1][3] = 30;
                 figure[2][0] = 120; figure[2][1] = 60; figure[2][2] = 30; figure[2][3] = 30;
-                figure[3][0] = 150; figure[3][1] = 30; figure[3][2] = 30; figure[3][3] = 30;
+                figure[3][0] = 150; figure[3][1] = 90; figure[3][2] = 30; figure[3][3] = 30;
                 figure[4][0] = 128; figure[4][1] = 0; figure[4][2] = 128;
                 break;
             case Z3:
@@ -190,7 +190,7 @@ public class FigureManager {
                 break;
             case T4:
                 figure[0][0] = 150; figure[0][1] = 60; figure[0][2] = 30; figure[0][3] = 30;
-                figure[1][0] = 180; figure[1][1] = 60; figure[1][2] = 30; figure[1][3] = 30;
+                figure[1][0] = 120; figure[1][1] = 60; figure[1][2] = 30; figure[1][3] = 30;
                 figure[2][0] = 150; figure[2][1] = 30; figure[2][2] = 30; figure[2][3] = 30;
                 figure[3][0] = 150; figure[3][1] = 90; figure[3][2] = 30; figure[3][3] = 30;
                 figure[4][0] = 128; figure[4][1] = 0; figure[4][2] = 128;
