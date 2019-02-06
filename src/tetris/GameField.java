@@ -2,6 +2,7 @@ package tetris;
 
 import figure_manager.FigureManager;
 import figure_manager.Figures;
+import figure_manager.RecognizerFigure;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ import java.util.Random;
 
 public class GameField extends JPanel implements ActionListener {
     private FigureManager fm = new FigureManager();
+    private Figures figures;
     private Timer timer;
     private final int SIZE = 330;
     private final int DOT_SIZE = 30;
@@ -27,7 +29,8 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     public void initStart() {
-        figure = fm.figures(Figures.T);
+        figures = Figures.Z;
+        figure = fm.figures(figures);
         timer = new Timer(250, this);
 
         x = figure[0][0];
@@ -45,25 +48,32 @@ public class GameField extends JPanel implements ActionListener {
 
             switch (i) {
                 case 0:
-                    figure = fm.figures(Figures.I);
+                    figures = Figures.I;
+                    figure = fm.figures(figures);
                     break;
                 case 1:
-                    figure = fm.figures(Figures.J);
+                    figures = Figures.J;
+                    figure = fm.figures(figures);
                     break;
                 case 2:
-                    figure = fm.figures(Figures.L);
+                    figures = Figures.L;
+                    figure = fm.figures(figures);
                     break;
                 case 3:
-                    figure = fm.figures(Figures.O);
+                    figures = Figures.O;
+                    figure = fm.figures(figures);
                     break;
                 case 4:
-                    figure = fm.figures(Figures.S);
+                    figures = Figures.S;
+                    figure = fm.figures(figures);
                     break;
                 case 5:
-                    figure = fm.figures(Figures.T);
+                    figures = Figures.T;
+                    figure = fm.figures(figures);
                     break;
                 case 6:
-                    figure = fm.figures(Figures.Z);
+                    figures = Figures.Z;
+                    figure = fm.figures(figures);
                     break;
             }
 
@@ -84,7 +94,7 @@ public class GameField extends JPanel implements ActionListener {
         super.paint(g);
 
         //draw figure
-        g.setColor(new Color(figure[4][0],figure[4][1],figure[4][2]));
+        g.setColor(new Color(figure[4][0], figure[4][1], figure[4][2]));
         g.fillRect(x + (x - figure[0][0]), y + (y - figure[0][1]), figure[0][2], figure[0][3]);
         g.fillRect(x + (x - figure[1][0]), y + (y - figure[1][1]), figure[1][2], figure[1][3]);
         g.fillRect(x + (x - figure[2][0]), y + (y - figure[2][1]), figure[2][2], figure[2][3]);
@@ -122,6 +132,14 @@ public class GameField extends JPanel implements ActionListener {
 
             if (key == KeyEvent.VK_RIGHT) {
                 x += 30;
+            }
+
+            if (key == KeyEvent.VK_UP) {
+                RecognizerFigure recognizerFigure = new RecognizerFigure();
+
+                figures = recognizerFigure.recognizer(figures);
+                System.out.println(figures);
+                figure = fm.figures(figures);
             }
 
 
