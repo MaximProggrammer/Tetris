@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 
 public class GameField extends JPanel implements ActionListener {
     private FigureManager fm = new FigureManager();
+    private Mesh mesh;
     private Figures figures;
     private Timer timer;
     private final int SIZE = 330;
@@ -30,9 +31,13 @@ public class GameField extends JPanel implements ActionListener {
         figures = Figures.Z;
         figure = fm.figures(figures);
         timer = new Timer(500, this);
+        mesh = new Mesh(19, 11);
 
         x = figure[0][0];
         y = figure[0][1];
+
+        for (int i = 0; i < mesh.getColCount(); i++)
+            mesh.setCellValue(18, i, true);
 
         timer.start();
     }
@@ -91,20 +96,26 @@ public class GameField extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
 
-        //draw figure
-        g.setColor(new Color(figure[4][0], figure[4][1], figure[4][2]));
-        g.fillRect(x + (x - figure[0][0]), y + (y - figure[0][1]), figure[0][2], figure[0][3]);
-        g.fillRect(x + (x - figure[1][0]), y + (y - figure[1][1]), figure[1][2], figure[1][3]);
-        g.fillRect(x + (x - figure[2][0]), y + (y - figure[2][1]), figure[2][2], figure[2][3]);
-        g.fillRect(x + (x - figure[3][0]), y + (y - figure[3][1]), figure[3][2], figure[3][3]);
 
-        //draw field
-        for (int i = 0; i < SIZE; i += DOT_SIZE) {
-            g.setColor(Color.GRAY);
-            for (int j = 0; j < 600; j += DOT_SIZE) {
-                g.drawLine(i, 0, i, 600);
-                g.drawLine(0, j, SIZE, j);
+        int cellWidth = getWidth() / mesh.getColCount();
+        int cellHeight = getHeight() / mesh.getRowCount();
+
+        int w = 0, h = 0;
+
+        for (int row = 0; row < mesh.getRowCount(); row++) {
+            for (int col = 0; col < mesh.getColCount(); col++) {
+                g.setColor(Color.red);
+                if (mesh.getValue(row, col)) {
+                    g.fillRect(w, h, w + cellWidth, h + cellHeight);
+                }
+
+                g.setColor(Color.black);
+                g.drawRect(w, h, w + cellWidth, h + cellHeight);
+
+                w += cellWidth;
             }
+            h += cellHeight;
+            w = 0;
         }
 
         g.dispose();
