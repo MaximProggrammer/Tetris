@@ -2,7 +2,6 @@ package tetris;
 
 import figure_manager.FigureManager;
 import figure_manager.Figures;
-import figure_manager.RecognizerFigure;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 public class GameField extends JPanel implements ActionListener {
     private FigureManager fm = new FigureManager();
@@ -135,10 +133,7 @@ public class GameField extends JPanel implements ActionListener {
             }
 
             if (key == KeyEvent.VK_UP) {
-                RecognizerFigure recognizerFigure = new RecognizerFigure();
-
-                figures = recognizerFigure.recognizer(figures);
-                System.out.println(figures);
+                figures = fm.recognizer(figures);
                 figure = fm.figures(figures);
             }
 
