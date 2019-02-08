@@ -38,7 +38,7 @@ public class GameField extends JPanel implements ActionListener {
         y = figure[0][1];
 
         for (int i = 0; i < mesh.getColCount(); i++)
-            mesh.setCellValue(17, i, true);
+            mesh.setCellValue(18, i, true);
 
         timer.start();
     }
@@ -46,39 +46,9 @@ public class GameField extends JPanel implements ActionListener {
     public void checkCollision() {
         if (y == 255) {
 
-            int i;
-            i = new Random().nextInt(8);
-
-            switch (i) {
-                case 0:
-                    figures = Figures.I;
-                    figure = fm.figures(figures);
-                    break;
-                case 1:
-                    figures = Figures.J;
-                    figure = fm.figures(figures);
-                    break;
-                case 2:
-                    figures = Figures.L;
-                    figure = fm.figures(figures);
-                    break;
-                case 3:
-                    figures = Figures.O;
-                    figure = fm.figures(figures);
-                    break;
-                case 4:
-                    figures = Figures.S;
-                    figure = fm.figures(figures);
-                    break;
-                case 5:
-                    figures = Figures.T;
-                    figure = fm.figures(figures);
-                    break;
-                case 6:
-                    figures = Figures.Z;
-                    figure = fm.figures(figures);
-                    break;
-            }
+            int i = new Random().nextInt(8);
+            figures = fm.createNewFigure(i);
+            figure = fm.figures(figures);
 
             x = figure[0][0];
             y = figure[0][1];
@@ -103,7 +73,6 @@ public class GameField extends JPanel implements ActionListener {
         g.fillRect(x + (x - figure[3][0]), y + (y - figure[3][1]), figure[3][2], figure[3][3]);
 
 
-
         int cellWidth = getWidth() / mesh.getColCount();
         int cellHeight = getHeight() / mesh.getRowCount();
 
@@ -112,7 +81,7 @@ public class GameField extends JPanel implements ActionListener {
         for (int row = 0; row < mesh.getRowCount(); row++) {
             for (int col = 0; col < mesh.getColCount(); col++) {
                 if (mesh.getValue(row, col)) {
-                    g.setColor(Color.red);
+                    g.setColor(Color.white);
                     g.fillRect(w, h, cellWidth, cellHeight);
                 }
 

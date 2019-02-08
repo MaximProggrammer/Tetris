@@ -298,4 +298,36 @@ public class FigureManager {
 
         return figure;
     }
+
+    public Figures createNewFigure(int i){
+        Figures figure = Figures.I;
+
+        switch (i) {
+            case 0:
+                figure = Figures.I;
+                break;
+            case 1:
+                figure = Figures.J;
+                break;
+            case 2:
+                figure = Figures.L;
+                break;
+            case 3:
+                figure = Figures.O;
+                break;
+            case 4:
+                figure = Figures.S;
+                break;
+            case 5:
+                figure = Figures.T;
+                break;
+            case 6:
+                figure = Figures.Z;
+                break;
+        }
+
+
+
+        return figure;
+    }
 }
