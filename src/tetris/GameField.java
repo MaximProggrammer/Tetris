@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 public class GameField extends JPanel implements ActionListener {
     private FigureManager fm = new FigureManager();
@@ -37,17 +38,16 @@ public class GameField extends JPanel implements ActionListener {
         y = figure[0][1];
 
         for (int i = 0; i < mesh.getColCount(); i++)
-            mesh.setCellValue(18, i, true);
+            mesh.setCellValue(17, i, true);
 
         timer.start();
     }
 
     public void checkCollision() {
         if (y == 255) {
-            timer.stop();
 
-            int i = 10;
-            //i = new Random().nextInt(8);
+            int i;
+            i = new Random().nextInt(8);
 
             switch (i) {
                 case 0:
@@ -80,8 +80,8 @@ public class GameField extends JPanel implements ActionListener {
                     break;
             }
 
-            //x = figure[0][0];
-            //y = figure[0][1];
+            x = figure[0][0];
+            y = figure[0][1];
         }
 
         if (x > 210) {
@@ -96,21 +96,28 @@ public class GameField extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
 
+        g.setColor(new Color(figure[4][0], figure[4][1], figure[4][2]));
+        g.fillRect(x + (x - figure[0][0]), y + (y - figure[0][1]), figure[0][2], figure[0][3]);
+        g.fillRect(x + (x - figure[1][0]), y + (y - figure[1][1]), figure[1][2], figure[1][3]);
+        g.fillRect(x + (x - figure[2][0]), y + (y - figure[2][1]), figure[2][2], figure[2][3]);
+        g.fillRect(x + (x - figure[3][0]), y + (y - figure[3][1]), figure[3][2], figure[3][3]);
+
+
 
         int cellWidth = getWidth() / mesh.getColCount();
         int cellHeight = getHeight() / mesh.getRowCount();
 
-        int w = 0, h = 0;
+        int h = 0, w = 0;
 
         for (int row = 0; row < mesh.getRowCount(); row++) {
             for (int col = 0; col < mesh.getColCount(); col++) {
-                g.setColor(Color.red);
                 if (mesh.getValue(row, col)) {
-                    g.fillRect(w, h, w + cellWidth, h + cellHeight);
+                    g.setColor(Color.red);
+                    g.fillRect(w, h, cellWidth, cellHeight);
                 }
 
                 g.setColor(Color.black);
-                g.drawRect(w, h, w + cellWidth, h + cellHeight);
+                g.drawRect(w, h, cellWidth, cellHeight);
 
                 w += cellWidth;
             }
