@@ -29,7 +29,7 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     public void initStart() {
-        figures = Figures.Z;
+        figures = Figures.I;
         figure = fm.figures(figures);
         timer = new Timer(500, this);
         mesh = new Mesh(19, 11);
@@ -37,14 +37,25 @@ public class GameField extends JPanel implements ActionListener {
         x = figure[0][0];
         y = figure[0][1];
 
-        for (int i = 0; i < mesh.getColCount(); i++)
+        for (int i = 0; i < mesh.getColCount(); i++) {
             mesh.setCellValue(18, i, true);
+        }
 
         timer.start();
     }
 
     public void checkCollision() {
         if (y == 255) {
+
+            for (int i = 0; i < 4; i++) {
+                int x1, y1;
+
+                x1 = (x + (x - figure[i][0])) / DOT_SIZE;
+                y1 = (y + (y - figure[i][1])) / DOT_SIZE;
+
+                mesh.setCellValue(y1, x1, true);
+            }
+
 
             int i = new Random().nextInt(8);
             figures = fm.createNewFigure(i);
