@@ -1,5 +1,7 @@
 package figure_manager;
 
+import java.util.Random;
+
 public class FigureManager {
 
     public int[][] figures(Figures figures) {
@@ -299,8 +301,9 @@ public class FigureManager {
         return figure;
     }
 
-    public Figures createNewFigure(int i){
+    public Figures createNewFigure(){
         Figures figure = Figures.I;
+        int i = new Random().nextInt(8);
 
         switch (i) {
             case 0:
@@ -326,8 +329,53 @@ public class FigureManager {
                 break;
         }
 
-
-
         return figure;
+    }
+
+    public boolean[] checkFigure(Figures figure){
+        boolean thisFigure[] = new boolean[2];
+        thisFigure[1] = false;
+
+        switch (figure){
+            case S:
+                thisFigure[0] = true;
+                break;
+            case S3:
+                thisFigure[0] = true;
+                break;
+            case Z:
+                thisFigure[0] = true;
+                break;
+            case Z3:
+                thisFigure[0] = true;
+                break;
+            case T:
+                thisFigure[0] = true;
+                break;
+            case T3:
+                thisFigure[1] = true;
+                break;
+            case J:
+                thisFigure[0] = true;
+                break;
+            case J3:
+                thisFigure[1] = true;
+                break;
+            case O:
+                thisFigure[0] = true;
+                break;
+            case O2:
+                thisFigure[0] = true;
+                break;
+            case O3:
+                thisFigure[0] = true;
+                break;
+            case O4:
+                thisFigure[0] = true;
+                break;
+        }
+
+
+        return thisFigure;
     }
 }

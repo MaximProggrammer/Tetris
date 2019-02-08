@@ -29,7 +29,7 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     public void initStart() {
-        figures = Figures.I;
+        figures = Figures.T;
         figure = fm.figures(figures);
         timer = new Timer(500, this);
         mesh = new Mesh(19, 11);
@@ -45,8 +45,9 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     public void checkCollision() {
-        if (y == 255) {
+        boolean[] thisFigure = fm.checkFigure(figures);
 
+        if (y == 270 && thisFigure[0] != true && thisFigure[1] != true) {
             for (int i = 0; i < 4; i++) {
                 int x1, y1;
 
@@ -56,9 +57,41 @@ public class GameField extends JPanel implements ActionListener {
                 mesh.setCellValue(y1, x1, true);
             }
 
+            figures = fm.createNewFigure();
+            figure = fm.figures(figures);
 
-            int i = new Random().nextInt(8);
-            figures = fm.createNewFigure(i);
+            x = figure[0][0];
+            y = figure[0][1];
+        }
+
+        if (y == 255 && thisFigure[0] != false && thisFigure[1] != true) {
+            for (int i = 0; i < 4; i++) {
+                int x1, y1;
+
+                x1 = (x + (x - figure[i][0])) / DOT_SIZE;
+                y1 = (y + (y - figure[i][1])) / DOT_SIZE;
+
+                mesh.setCellValue(y1, x1, true);
+            }
+
+            figures = fm.createNewFigure();
+            figure = fm.figures(figures);
+
+            x = figure[0][0];
+            y = figure[0][1];
+        }
+
+        if(y == 285 && thisFigure[1] != false){
+            for (int i = 0; i < 4; i++) {
+                int x1, y1;
+
+                x1 = (x + (x - figure[i][0])) / DOT_SIZE;
+                y1 = (y + (y - figure[i][1])) / DOT_SIZE;
+
+                mesh.setCellValue(y1, x1, true);
+            }
+
+            figures = fm.createNewFigure();
             figure = fm.figures(figures);
 
             x = figure[0][0];
