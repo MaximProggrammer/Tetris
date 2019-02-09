@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 public class GameField extends JPanel implements ActionListener {
     private FigureManager fm = new FigureManager();
@@ -29,7 +28,7 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     public void initStart() {
-        figures = Figures.T;
+        figures = Figures.I;
         figure = fm.figures(figures);
         timer = new Timer(500, this);
         mesh = new Mesh(19, 11);
@@ -81,7 +80,7 @@ public class GameField extends JPanel implements ActionListener {
             y = figure[0][1];
         }
 
-        if(y == 285 && thisFigure[1] != false){
+        if (y == 285 && thisFigure[1] != false) {
             for (int i = 0; i < 4; i++) {
                 int x1, y1;
 
@@ -96,6 +95,28 @@ public class GameField extends JPanel implements ActionListener {
 
             x = figure[0][0];
             y = figure[0][1];
+        }
+
+
+        for (int i = 0; i < 4; i++) {
+            int x1 = (x + (x - figure[i][0])) / DOT_SIZE;
+            int y1 = (y + (y - figure[i][1])) / DOT_SIZE;
+
+            if (mesh.getValue(y1 + 1, x1).equals(true)) {
+                for (int j = 0; j < 4; j++) {
+                    int x2 = (x + (x - figure[j][0])) / DOT_SIZE;
+                    int y2 = (y + (y - figure[j][1])) / DOT_SIZE;
+
+                    System.out.println("asdsdfsadafvbged");
+                    mesh.setCellValue(y2, x2, true);
+                }
+
+                figures = fm.createNewFigure();
+                figure = fm.figures(figures);
+
+                x = figure[0][0];
+                y = figure[0][1];
+            }
         }
 
         if (x > 210) {
