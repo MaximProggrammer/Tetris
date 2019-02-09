@@ -15,7 +15,6 @@ public class GameField extends JPanel implements ActionListener {
     private Mesh mesh;
     private Figures figures;
     private Timer timer;
-    private final int SIZE = 330;
     private final int DOT_SIZE = 30;
     private int x, y;
     private int[][] figure;
@@ -31,7 +30,7 @@ public class GameField extends JPanel implements ActionListener {
         figures = Figures.I;
         figure = fm.figures(figures);
         timer = new Timer(500, this);
-        mesh = new Mesh(19, 11);
+        mesh = new Mesh(19, 12);
 
         x = figure[0][0];
         y = figure[0][1];
@@ -107,7 +106,6 @@ public class GameField extends JPanel implements ActionListener {
                     int x2 = (x + (x - figure[j][0])) / DOT_SIZE;
                     int y2 = (y + (y - figure[j][1])) / DOT_SIZE;
 
-                    System.out.println("asdsdfsadafvbged");
                     mesh.setCellValue(y2, x2, true);
                 }
 
@@ -119,12 +117,14 @@ public class GameField extends JPanel implements ActionListener {
             }
         }
 
-        if (x > 210) {
-            x = 210;
-        }
+        for (int i = 0; i < 4; i++) {
+            int x1 = (x + (x - figure[i][0]));
 
-        if (x < 90) {
-            x = 90;
+            if (x1 > 270) {
+                x = 210;
+            } else if (x1 - DOT_SIZE < 90) {
+                x = 90;
+            }
         }
     }
 
@@ -177,11 +177,11 @@ public class GameField extends JPanel implements ActionListener {
             int key = e.getKeyCode();
 
             if (key == KeyEvent.VK_LEFT) {
-                x -= 30;
+                x -= DOT_SIZE / 2;
             }
 
             if (key == KeyEvent.VK_RIGHT) {
-                x += 30;
+                x += DOT_SIZE / 2;
             }
 
             if (key == KeyEvent.VK_UP) {

@@ -13,7 +13,7 @@ public class MainWindow {
     public void create(){
         window.setTitle("TETRIS");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window.setSize(330,600);
+        window.setSize(360,600);
         window.setResizable(false);
         window.setLocationRelativeTo(null);
         window.add(new GameField());
