@@ -118,12 +118,16 @@ public class GameField extends JPanel implements ActionListener {
         }
 
         for (int i = 0; i < 4; i++) {
-            int x1 = (x + (x - figure[i][0]));
+            int x1 = (x + (x - figure[i][0])) / DOT_SIZE;
 
-            if (x1 > 270) {
-                x = 210;
-            } else if (x1 - DOT_SIZE < 90) {
-                x = 90;
+            if (x1 < 0) {
+                System.out.println("ERROR");
+                x += DOT_SIZE / 2;
+            }
+
+            if (x1 > 11) {
+                System.out.println("ERROR");
+                x -= DOT_SIZE / 2;
             }
         }
     }
