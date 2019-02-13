@@ -18,6 +18,7 @@ public class GameField extends JPanel implements ActionListener {
     private final int DOT_SIZE = 30;
     private int x, y;
     private int[][] figure;
+    private boolean inGame;
 
     public GameField() {
         setBackground(Color.BLACK);
@@ -31,6 +32,7 @@ public class GameField extends JPanel implements ActionListener {
         figure = fm.figures(figures);
         timer = new Timer(500, this);
         mesh = new Mesh(19, 12);
+        inGame = true;
 
         x = figure[0][0];
         y = figure[0][1];
@@ -119,6 +121,15 @@ public class GameField extends JPanel implements ActionListener {
 
         for (int i = 0; i < 4; i++) {
             int x1 = (x + (x - figure[i][0])) / DOT_SIZE;
+            int y1 = (y + (y - figure[i][1])) / DOT_SIZE;
+
+            if (mesh.getValue(y1, x1).equals(true)) {
+                inGame = false;
+            }
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int x1 = (x + (x - figure[i][0])) / DOT_SIZE;
 
             if (x1 < 0) {
                 System.out.println("ERROR");
@@ -168,9 +179,14 @@ public class GameField extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        checkCollision();
-        repaint();
-        y += DOT_SIZE / 2;
+        if (inGame) {
+            checkCollision();
+            repaint();
+            y += DOT_SIZE / 2;
+        }else{
+            timer.stop();
+            System.out.println("GameOver");
+        }
     }
 
     class FieldKeyListener extends KeyAdapter {
