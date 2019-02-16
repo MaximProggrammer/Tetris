@@ -163,6 +163,7 @@ public class GameField extends JPanel implements ActionListener {
                         }
 
                         score += 400;
+                        System.out.println("Ваш счет: "+ score);
                     }
                 }
             }
