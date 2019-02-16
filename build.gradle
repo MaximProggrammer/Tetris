@@ -18,6 +18,7 @@ dependencies {
 
 jar {
     manifest {
+        attributes 'Main-Class': 'tetris.MainWindow'
         attributes 'Implementation-Title': "tetris"
         attributes 'Implementation-Version': version
         attributes 'Implementation-Vendor': "maxim!"
