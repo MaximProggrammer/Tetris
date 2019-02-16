@@ -155,15 +155,14 @@ public class GameField extends JPanel implements ActionListener {
                             mesh.setCellValue(i, j, false);
                         }
 
-                        for (int i2 = 0; i2 < mesh.getRowCount() - 1; i2 += 2) {
-                            for (int j2 = 0; j2 < mesh.getColCount(); j2++) {
-                                mesh.setCellValue(i2 + 1, j2, mesh.getValue(i2, j2));
-
+                        for (int row = mesh.getRowCount() - 2; row > 0; row--) {
+                            for (int col = 0; col < mesh.getColCount(); col++) {
+                                mesh.setCellValue(row, col, mesh.getValue(row - 1, col));
                             }
                         }
 
                         score += 400;
-                        System.out.println("Ваш счет: "+ score);
+                        System.out.println("Ваш счет: " + score);
                     }
                 }
             }
