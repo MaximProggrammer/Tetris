@@ -19,6 +19,7 @@ public class GameField extends JPanel implements ActionListener {
     private int x, y;
     private int[][] figure;
     private boolean inGame;
+    private int score;
 
     public GameField() {
         setBackground(Color.BLACK);
@@ -33,6 +34,7 @@ public class GameField extends JPanel implements ActionListener {
         timer = new Timer(500, this);
         mesh = new Mesh(19, 12);
         inGame = true;
+        score = 0;
 
         x = figure[0][0];
         y = figure[0][1];
@@ -132,13 +134,37 @@ public class GameField extends JPanel implements ActionListener {
             int x1 = (x + (x - figure[i][0])) / DOT_SIZE;
 
             if (x1 < 0) {
-                System.out.println("ERROR");
+                System.out.println("ERROR LEFT");
                 x += DOT_SIZE / 2;
             }
 
             if (x1 > 11) {
-                System.out.println("ERROR");
+                System.out.println("ERROR RIGHT");
                 x -= DOT_SIZE / 2;
+            }
+        }
+    }
+
+    public void checkScore() {
+        for (int i = 0; i < mesh.getRowCount() - 1; i++) {
+            if (mesh.getValue(i, 0) && mesh.getValue(i, 1) && mesh.getValue(i, 2) && mesh.getValue(i, 3)) {
+                if (mesh.getValue(i, 4) && mesh.getValue(i, 5) && mesh.getValue(i, 6) && mesh.getValue(i, 7)) {
+                    if (mesh.getValue(i, 8) && mesh.getValue(i, 9) && mesh.getValue(i, 10) && mesh.getValue(i, 11)) {
+
+                        for (int j = 0; j < mesh.getColCount(); j++) {
+                            mesh.setCellValue(i, j, false);
+                        }
+
+                        for (int i2 = 0; i2 < mesh.getRowCount() - 1; i2 += 2) {
+                            for (int j2 = 0; j2 < mesh.getColCount(); j2++) {
+                                mesh.setCellValue(i2 + 1, j2, mesh.getValue(i2, j2));
+
+                            }
+                        }
+
+                        score += 400;
+                    }
+                }
             }
         }
     }
@@ -181,9 +207,10 @@ public class GameField extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         if (inGame) {
             checkCollision();
+            checkScore();
             repaint();
             y += DOT_SIZE / 2;
-        }else{
+        } else {
             timer.stop();
             System.out.println("GameOver");
         }
